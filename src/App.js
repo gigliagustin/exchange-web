@@ -1,7 +1,9 @@
+import { Graph } from './components/Graph';
+
 const App = () => {
   return (
     <div>
-      <p>Hello, world!</p>
+      <Graph />
     </div>
   );
 };
