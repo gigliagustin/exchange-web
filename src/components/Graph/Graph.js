@@ -11,7 +11,7 @@ const Graph = () => {
     if (!isLoading && !isError) {
       console.log(historical);
     }
-  }, []);
+  }, [isLoading, isError]);
 
   const handleChange = (e) => {
     setContractAddress(e.target.value);

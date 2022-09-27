@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { key } from '../constants';
 
-// const date = new Date().now();
-// const from = date; // Restar 7 dias;
+const today = new Date();
+const toDate = today.toISOString().split('T')[0];
+
+const lastDate = new Date(today.setDate(today.getDay() - 1));
+const fromDate = lastDate.toISOString().split('T')[0];
 
 export const getHistorical = async (
   contractAddress,
@@ -10,7 +13,7 @@ export const getHistorical = async (
   quoteCurrency = 'USD',
 ) => {
   const response = await axios(
-    `https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/${chainId}/${quoteCurrency}/${contractAddress}/?quote-currency=${quoteCurrency}&format=JSON&from=2022-09-01&to=2022-09-24&key=${key}`,
+    `https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/${chainId}/${quoteCurrency}/${contractAddress}/?quote-currency=${quoteCurrency}&format=JSON&from=${fromDate}&to=${toDate}&key=${key}`,
   );
 
   return response;
