@@ -2,6 +2,7 @@ export const URL_BASE = 'https://api.covalenthq.com/v1';
 export const CHAIN_ID = '1';
 export const CONTEXT = 'address/demo.eth/balances_v2';
 export const key = 'ckey_f2ff6bb113f042749c63d1b7e2f';
+export const address = 'demo.eth';
 export const chains = [
   {
     name: 'Ether',
