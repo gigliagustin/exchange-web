@@ -7,11 +7,12 @@ const useHistorical = (contractAdress, chainId) => {
   const [historical, setHistorical] = useState([]);
 
   const { isLoading, isError } = useQuery(
-    ['historical'],
+    ['historical', contractAdress, chainId],
     () => getHistorical(contractAdress, chainId),
     {
       enabled: !!contractAdress && !!chainId,
       refetchOnWindowFocus: false,
+      refetchInterval: 60000,
       select(response) {
         return filterItems(response);
       },

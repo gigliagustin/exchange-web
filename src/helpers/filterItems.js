@@ -10,5 +10,6 @@ export const filterItems = (response) => {
     const { date, price } = item;
     return new GraphItems(date, price);
   });
-  return items;
+  const newItems = items.reverse();
+  return newItems;
 };
