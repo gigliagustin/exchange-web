@@ -1,0 +1,16 @@
+.dropdown-menu.show {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dropdown-item {
+    padding: 0.8rem;
+    text-align: center;
+    &:hover {
+        background-color: #a12829;
+    }
+}
+
+.nav-item {
+    margin-left: 4rem;
+}
