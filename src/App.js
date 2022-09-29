@@ -1,8 +1,16 @@
+import React from 'react';
+import Header from './components/Header';
+import {
+  ThemeProvider,
+} from './providers/ThemeProvider';
+
 const App = () => {
   return (
-    <div>
-      <p>Hello, world!</p>
-    </div>
+    <ThemeProvider>
+      <div className='App'>
+        <Header />
+      </div>
+    </ThemeProvider>
   );
 };
 
