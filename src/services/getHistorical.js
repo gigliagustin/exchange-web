@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { key } from '../constants';
 
-const today = new Date();
-const toDate = today.toISOString().split('T')[0];
+const date = new Date();
 
-const lastDate = new Date(today.setDate(today.getDay() - 1));
-const fromDate = lastDate.toISOString().split('T')[0];
+const fromDate = new Date(date.getFullYear(), date.getMonth(), 1).toISOString().split('T')[0];
+const toDate = date.toISOString().split('T')[0];
 
 export const getHistorical = async (
   contractAddress,

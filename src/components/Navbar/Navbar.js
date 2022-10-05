@@ -1,9 +1,11 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { currencies } from '../../constants';
+import { useQuoteCurrencyContext, useQuoteCurrencyToggleContext } from '../../providers/CurrencyProvider';
 import './navbar.scss';
 
 const Navbar = () => {
-  const [currentCoin, setCurrentCoin] = useState('USD');
+  const currentCoin = useQuoteCurrencyContext();
+  const setCurrentCoin = useQuoteCurrencyToggleContext();
   const handleClick = (e) => { setCurrentCoin(e.target.id); };
   return (
     <nav className="navbar navbar-expand-lg bg-light">
