@@ -1,4 +1,3 @@
-
 import { Graph } from './components/Graph';
 import { Navbar } from './components/Navbar';
 
