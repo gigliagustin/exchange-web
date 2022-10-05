@@ -3,8 +3,8 @@ import { currencies } from '../../constants';
 import './navbar.scss';
 
 const Navbar = () => {
-  const [currentCoin, setcurrentCoin] = useState('USD');
-  const handleClick = (e) => { setcurrentCoin(e.target.id); };
+  const [currentCoin, setCurrentCoin] = useState('USD');
+  const handleClick = (e) => { setCurrentCoin(e.target.id); };
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid d-flex .justify-content-sm-between">
