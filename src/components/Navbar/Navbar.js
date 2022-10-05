@@ -1,8 +1,10 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { currencies } from '../../constants';
 import './navbar.scss';
 
 const Navbar = () => {
+  const [currentCoin, setcurrentCoin] = useState('USD');
+  const handleClick = (e) => { setcurrentCoin(e.target.id); };
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid d-flex .justify-content-sm-between">
@@ -33,13 +35,12 @@ const Navbar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                USD
+                {currentCoin}
               </a>
-              <ul className="dropdown-menu">
-                {currencies.map((currency) => <li key={currency.code}>
-                    <a className="dropdown-item" href="#">
-                      <b>{currency.country}</b> {currency.code}</a>
-                  </li>)}
+              <ul className="dropdown-menu">{currencies.map((currency) => <li key={currency.code} onClick={handleClick}>
+                <a className="dropdown-item" href="#" id={currency.code}>
+                  <b>{currency.country}</b> {currency.code}</a>
+              </li>)}
               </ul>
             </li>
             <li className="nav-item">
@@ -59,8 +60,8 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
+      </div >
+    </nav >
   );
 };
 
