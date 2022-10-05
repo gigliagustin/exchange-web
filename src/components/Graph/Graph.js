@@ -51,7 +51,6 @@ const Graph = () => {
                   <XAxis dataKey="date" angle={-10} />
                   <YAxis />
                   <Tooltip />
-                  {/* <Legend /> */}
                   <Line type="monotone" dataKey="price" stroke="#a12829" dot={false} />
                 </LineChart>
               </ResponsiveContainer>
