@@ -9,13 +9,15 @@ import {
 } from 'recharts';
 import { chains } from '../../constants';
 import useHistorical from '../../hooks/useHistorical';
+import { useQuoteCurrencyContext } from '../../providers/CurrencyProvider';
 import BlankSlate from '../BlankSlate/BlankSlate';
 
 const Graph = () => {
   const [contractAddress, setContractAddress] = useState();
+  const currentCoin = useQuoteCurrencyContext();
   const chainsId = chains.filter(chain => chain.contractAddress === contractAddress);
   const chainId = chainsId[0]?.chainId;
-  const { historical, isError, isLoading } = useHistorical(contractAddress, chainId);
+  const { historical, isError, isLoading } = useHistorical(contractAddress, chainId, currentCoin);
 
   const handleChange = (e) => {
     setContractAddress(e.target.value);
