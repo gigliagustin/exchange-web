@@ -88,3 +88,29 @@ export const currencies = [
 
   },
 ];
+export const TeamMembers = [
+  {
+    id: 1,
+    name: 'Agustin Gigli',
+    role: 'Team Leader',
+    image: '/static/media/ag.f91f3fcd7f4b5275104a.jpg',
+  },
+  {
+    id: 2,
+    name: 'Maciel Castro',
+    role: 'Scrum Master',
+    image: '/static/media/mc.1efe49aeae9f5ddf1ac2.jpg',
+  },
+  {
+    id: 3,
+    name: 'Juan I. Cansillieri',
+    role: 'Dev',
+    image: '/static/media/jic.f97bb65a043ab685bc6e.jpg',
+  },
+  {
+    id: 4,
+    name: 'Dante Sarmiento',
+    role: 'Dev',
+    image: '/static/media/ds.1ca9ec220154351406a9.jpg',
+  },
+];
