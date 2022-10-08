@@ -23,7 +23,7 @@ export const currencies = [
   },
   {
     code: 'USD',
-    country: 'EU',
+    country: 'US',
     name: 'Dolar Americano',
 
   },
