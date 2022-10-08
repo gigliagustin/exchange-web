@@ -9,7 +9,6 @@ const useHistorical = (
   currentCoin,
 ) => {
   const [historical, setHistorical] = useState([]);
-  console.log(currentCoin);
 
   const { isLoading, isError } = useQuery(
     ['historical', contractAdress, chainId, currentCoin],
