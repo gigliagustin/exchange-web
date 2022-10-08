@@ -3,16 +3,19 @@ import { useState } from 'react';
 import { filterItems } from '../helpers/filterItems';
 import { getHistorical } from '../services/getHistorical';
 
-const useHistorical = (contractAdress, chainId) => {
+const useHistorical = (
+  contractAdress,
+  chainId,
+  currentCoin,
+) => {
   const [historical, setHistorical] = useState([]);
 
   const { isLoading, isError } = useQuery(
-    ['historical', contractAdress, chainId],
-    () => getHistorical(contractAdress, chainId),
+    ['historical', contractAdress, chainId, currentCoin],
+    () => getHistorical(contractAdress, chainId, currentCoin),
     {
-      enabled: !!contractAdress && !!chainId,
+      enabled: !!contractAdress && !!chainId && !!currentCoin,
       refetchOnWindowFocus: false,
-      refetchInterval: 60000,
       select(response) {
         return filterItems(response);
       },

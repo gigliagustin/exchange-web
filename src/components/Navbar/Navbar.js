@@ -1,17 +1,19 @@
 import { React, useState } from 'react';
 import { currencies } from '../../constants';
+import { useQuoteCurrencyContext, useQuoteCurrencyToggleContext } from '../../providers/CurrencyProvider';
 import './navbar.scss';
 
 const Navbar = () => {
-  const [currentCoin, setCurrentCoin] = useState('USD');
   const [currentCountry, setCurrentCountry] = useState('US');
 
+  const urlFlag = `https://www.countryflagicons.com/SHINY/16/${currentCountry}.png`;
+
+  const currentCoin = useQuoteCurrencyContext();
+  const setCurrentCoin = useQuoteCurrencyToggleContext();
   const handleClick = (e) => {
     setCurrentCoin(e.target.text);
     setCurrentCountry(e.target.id);
   };
-
-  const urlFlag = `https://www.countryflagicons.com/SHINY/16/${currentCountry}.png`;
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
