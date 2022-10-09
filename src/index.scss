@@ -18,6 +18,5 @@ code {
     monospace;
 }
 
-.testing {
-  background-color: $text-primary;
-};
+@import './components/BlankSlate/blankslate.scss';
+@import './components//Spinner/spiner.scss'

@@ -1,0 +1,45 @@
+@import '../../index.scss';
+.navbar a {
+    color: $text-primary;
+}
+
+.navbar-nav img {
+    margin-right: .3rem;
+    border-radius: 80%;
+}
+
+.dropdown-menu.show {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0;
+}
+
+.dropdown-menu[data-bs-popper] {
+    left: -50%;
+}
+
+.gridTitle {
+    padding: .2rem;
+    border-radius: .2rem;
+    grid-column: 1/3;
+    text-align: center;
+    background: $bg-primary-dark;
+    color: $text-primary-dark;
+}
+
+.dropdown-item {
+    padding: .5rem;
+    text-align: center;
+    color: $text-primary;
+    font-weight: 600;
+    border: .5px solid rgba(114, 113, 113, 0.175);
+    border-top: none;
+    &:hover {
+        color: $text-primary-dark;
+        background-color: $action-primary;
+    }
+}
+
+.nav-item {
+    margin-left: 4rem;
+}

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getBalances } from '../services/getBalances';
 
-const useBalances = (chainId, quoteCurrency) => {
+const useBalances = (quoteCurrency) => {
   const [balances, setBalances] = useState();
 
   const { isLoading, isError } = useQuery(
     ['balances'],
-    () => getBalances(),
+    () => getBalances(quoteCurrency),
     {
       onSettled(data) {
         if (data) setBalances(data.data.data);
