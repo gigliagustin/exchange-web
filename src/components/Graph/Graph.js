@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   LineChart,
   Tooltip,
@@ -7,58 +6,38 @@ import {
   Line,
   ResponsiveContainer,
 } from 'recharts';
-import { chains } from '../../constants';
-import useHistorical from '../../hooks/useHistorical';
-import { useQuoteCurrencyContext } from '../../providers/CurrencyProvider';
 import BlankSlate from '../BlankSlate/BlankSlate';
+import { Spinner } from '../Spinner';
 
-const Graph = () => {
-  const [contractAddress, setContractAddress] = useState();
-  const currentCoin = useQuoteCurrencyContext();
-  const chainsId = chains.filter(chain => chain.contractAddress === contractAddress);
-  const chainId = chainsId[0]?.chainId;
-  const { historical, isError, isLoading } = useHistorical(contractAddress, chainId, currentCoin);
+const Graph = ({ isLoading, isError, historical }) => {
+  if (historical.length === 0) {
+    return <BlankSlate />;
+  }
 
-  const handleChange = (e) => {
-    setContractAddress(e.target.value);
-  };
+  if (isLoading || isError) {
+    return (
+      <div className='container d-flex justify-content-center mt-5'>
+        <Spinner />;
+      </div>
+    );
+  }
 
   return (
-    <div id='graphic' className='container-fluid'>
-      <select
-        name="cryptos"
-        id="crypto"
-        onChange={handleChange}
+    <ResponsiveContainer width="100%" height={220} id='graphic-container'>
+      <LineChart data={historical} width={320} height={320} margin={{
+        left: -15, right: 10,
+      }}
       >
-        <option>Seleccione una Moneda</option>
-        {
-          chains.map((item) => (
-            <option
-              key={item.chainId}
-              value={item.contractAddress}
-            >
-              {item.name}
-            </option>
-          ))}
-      </select>
-      {
-        isLoading || isError
-          ? <BlankSlate isLoading={isLoading}/>
-          : <div className='container-fluid mt-3'>
-              <ResponsiveContainer width="100%" height={220}>
-                <LineChart data={historical} width={320} height={320} margin={{
-                  left: -15, right: 10,
-                }}
-                >
-                  <XAxis dataKey="date" angle={-10} />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="price" stroke="#a12829" dot={false} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-      }
-    </div>
+        <XAxis dataKey="date" angle={-10} />
+        <YAxis />
+        <Tooltip />
+        <Line
+          type='linear'
+          dataKey='price'
+          stroke='#a12829'
+          dot={false} />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 
