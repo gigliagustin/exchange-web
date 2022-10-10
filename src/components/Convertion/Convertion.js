@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import useBalances from '../../hooks/useBalances';
 import { chains } from '../../constants/index';
-// import filterBalances from '../../helpers/filterBalances';
+import Spinner from '../Spinner/Spinner';
+import { Card } from '../Card';
 
 const Convertion = () => {
   const [contractAddress, setContractAddress] = useState('');
@@ -9,55 +10,68 @@ const Convertion = () => {
   const handleChange = (e) => {
     setContractAddress(e.target.value);
   };
-  const { balances, isLoading, isError } = useBalances(quoteCurrency, contractAddress);
-
- // const uniqueBalance = filterBalances(contractAddress, balances);
-/*   console.log(`El valor actual es: ${JSON.stringify(uniqueBalance)}`);
-  const [convertion, setConvertion] = useState(uniqueBalance?.quote);
-  console.log(convertion);
+  const {
+    balances, quote, isLoading, isError,
+  } = useBalances(
+    quoteCurrency,
+    contractAddress,
+  );
+  console.log(balances);
+  const [convertion, setConvertion] = useState(quote);
   const onChangeValue = () => {
+    const pattern = /^[+]?([.]\d+|\d+[.]?\d*)$/g;
     const { value } = document.getElementById('moneyValue');
-    if (Number(value) === 0 || Number(value) === '0') {
-      return console.error('Putete');
-    } else {
-      const calc = Number(value) * Number(uniqueBalance?.quote);
+    if (pattern.test(value)) {
+      const calc = Number(value) * Number(balances?.quote);
+      console.log(calc);
       setConvertion(calc);
       return convertion;
     }
   };
   useEffect(() => {
-    onChangeValue();
-  }, [convertion]); */
+    if (!isLoading) {
+      setConvertion(quote);
+    }
+  }, [isLoading, quote, setConvertion]);
+
   return (
-    <div>
-       { isLoading
-         ? <p>
-        Loading...
-      </p>
-         : <select
-        name="cryptos"
-        id="crypto"
+    <div className='row'>
+      <select
+        name='cryptos'
+        id='crypto'
+        className='form-control'
         onChange={handleChange}
       >
         <option>Seleccione una moneda</option>
-        {
-          chains.map((item) => (
-            <option
-              key={item.chainId}
-              value={item.contractAddress}
-            >
-              {item.name}
-            </option>
-          ))}
+        {chains.map((item) => (
+          <option key={item.chainId} value={item.contractAddress}>
+            {item.name}
+          </option>
+        ))}
       </select>
-}
-
-  <p>
-  La moneda es: { /* convertion */}
-  </p>
-  <label htmlFor="">Select a value</label>
-  <input type="text" /* onBlur={onChangeValue} */id="moneyValue"/>
-</div>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className='col input-group'>
+            <label htmlFor='moneyValue' className='input-group-text'>
+              Select a value
+            </label>
+            <input
+              type='number'
+              onBlur={onChangeValue}
+              id='moneyValue'
+              min={0}
+              defaultValue={1}
+              className='form-control'
+            />
+          </div>
+          <div className='col'>
+            <Card balances={balances} convertion={convertion}/>
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

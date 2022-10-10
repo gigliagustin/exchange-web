@@ -5,23 +5,27 @@ import { filterBalances } from '../helpers/filterBalances';
 
 const useBalances = (quoteCurrency, contractAddress) => {
   const [balances, setBalances] = useState();
-
+  const [quote, setQuote] = useState();
   const { isLoading, isError } = useQuery(
     ['balances', contractAddress],
     () => getBalances(quoteCurrency),
     {
+      enabled: !!contractAddress,
       refetchOnWindowFocus: false,
       select(response) {
         return filterBalances(contractAddress, response);
       },
       onSettled(data) {
-        console.log('Los datos son', data);
-        if (data) setBalances(data);
+        if (data) {
+          setBalances(data);
+          setQuote(data.quote);
+        }
       },
     },
   );
   return {
     balances,
+    quote,
     isLoading,
     isError,
   };

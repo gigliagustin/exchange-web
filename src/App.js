@@ -19,8 +19,10 @@ const App = () => {
 
   return (
     <div>
-      <Convertion />
       <Navbar/>
+      <section id='conversor' className='container mt-3 border rounded shadow'>
+            <Convertion />
+      </section>
       <section id='graphic' className='container mt-3'>
         <select
           name='cryptos'
@@ -32,8 +34,8 @@ const App = () => {
           {
             chains.map((item) => (
               <option
-                key={item.chainId}
-                value={item.contractAddress}
+              key={item.chainId}
+              value={item.contractAddress}
               >
                 {item.name}
               </option>
