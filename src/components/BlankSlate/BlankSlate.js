@@ -1,13 +1,15 @@
 import React from 'react';
-import Spinner from '../Spinner/Spinner';
+import cryptos from '../../assets/cryptos.png';
 
-const BlankSlate = ({ isLoading }) => {
+const BlankSlate = () => {
   return (
-    <div className='container-fluid d-flex flex-column align-items-center justify-content-center box border py-5 mt-3'>
-      { isLoading
-        && (<Spinner />)
-      }
-      <p>Please, Choose a currency</p>
+    <div className='container d-flex flex-column align-items-center justify-content-center border rounded-2 py-5 mt-3'>
+      <img
+        src={cryptos}
+        alt='Cryptos image'
+        className='w-75'
+      />
+      <h2 className='text-center my-0'>Please, to continue choose a currency...</h2>
     </div>
   );
 };
