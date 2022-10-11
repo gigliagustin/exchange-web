@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import useHistorical from './hooks/useHistorical';
 import { useQuoteCurrencyContext } from './providers/CurrencyProvider';
+import { AboutUs } from './components/AboutUs';
 import { Graph } from './components/Graph';
 import { Navbar } from './components/Navbar';
 import { chains } from './constants';
@@ -48,6 +49,7 @@ const App = () => {
         </select>
         <Graph isLoading={isLoading} isError={isError} historical={historical}/>
       </section>
+      <AboutUs />
     </div>
   );
 };

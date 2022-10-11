@@ -1,3 +1,8 @@
+import imageAgus from '../assets/images/ag.jpg';
+import imageMaciel from '../assets/images/mc.jpg';
+import imageDante from '../assets/images/ds.jpg';
+import imageJuan from '../assets/images/jic.jpg';
+
 export const URL_BASE = 'https://api.covalenthq.com/v1';
 export const CHAIN_ID = '1';
 export const CONTEXT = 'address/demo.eth/balances_v2';
@@ -86,5 +91,31 @@ export const currencies = [
     country: 'GB',
     name: 'Libra Esterlina',
 
+  },
+];
+export const TeamMembers = [
+  {
+    id: 1,
+    name: 'Agustín Gigli',
+    role: 'Team Leader',
+    image: imageAgus,
+  },
+  {
+    id: 2,
+    name: 'Maciel Castro',
+    role: 'Scrum Master',
+    image: imageMaciel,
+  },
+  {
+    id: 3,
+    name: 'Juan I. Cansillieri',
+    role: 'Dev',
+    image: imageJuan,
+  },
+  {
+    id: 4,
+    name: 'Dante Sarmiento',
+    role: 'Dev',
+    image: imageDante,
   },
 ];
