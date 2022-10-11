@@ -96,7 +96,7 @@ export const currencies = [
 export const TeamMembers = [
   {
     id: 1,
-    name: 'Agustin Gigli',
+    name: 'Agustín Gigli',
     role: 'Team Leader',
     image: imageAgus,
   },
