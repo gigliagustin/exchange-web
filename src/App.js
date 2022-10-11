@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import useHistorical from './hooks/useHistorical';
 import { useQuoteCurrencyContext } from './providers/CurrencyProvider';
 import { Graph } from './components/Graph';
 import { Navbar } from './components/Navbar';
 import { chains } from './constants';
+import { useThemeContext } from './providers/ThemeProvider';
 
 const App = () => {
+  const theme = useThemeContext();
   const [contractAddress, setContractAddress] = useState();
   const currentCoin = useQuoteCurrencyContext();
   const chainsId = chains.filter(chain => chain.contractAddress === contractAddress);
@@ -17,12 +20,18 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className={classNames('App', {
+      'bg-light': theme === 'light',
+      'bg-dark': theme === 'dark',
+    })}>
       <Navbar/>
       <section id='graphic' className='container mt-3'>
         <select
           name='cryptos'
-          className='form-select mb-3'
+          className={classNames('form-select mb-3', {
+            'bg-light': theme === 'light',
+            'bg-dark text-white': theme === 'dark',
+          })}
           id='floating-select'
           onChange={handleChange}
         >
