@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QuoteCurrencyProvider } from './providers/CurrencyProvider';
+import { ChainCurrencyProvider } from './providers/ChainProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
 
 const queryClient = new QueryClient();
@@ -15,7 +16,9 @@ root.render(
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <QuoteCurrencyProvider>
-          <App />
+          <ChainCurrencyProvider>
+            <App />
+          </ChainCurrencyProvider>
         </QuoteCurrencyProvider>
       </QueryClientProvider>
     </ThemeProvider>

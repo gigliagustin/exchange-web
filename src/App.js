@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+import { Convertion } from './components/Convertion';
 import useHistorical from './hooks/useHistorical';
 import { useQuoteCurrencyContext } from './providers/CurrencyProvider';
 import { AboutUs } from './components/AboutUs';
 import { Graph } from './components/Graph';
 import { Navbar } from './components/Navbar';
 import { chains } from './constants';
+import { useChainCurrencyContext } from './providers/ChainProvider';
 import { useThemeContext } from './providers/ThemeProvider';
 
 const App = () => {
   const theme = useThemeContext();
-  const [contractAddress, setContractAddress] = useState();
   const currentCoin = useQuoteCurrencyContext();
-  const chainsId = chains.filter(chain => chain.contractAddress === contractAddress);
+  const chainValue = useChainCurrencyContext();
+  const { contractAddress } = chainValue.contractAddress;
+  const chainsId = chains.filter(
+    (chain) => chain.contractAddress === contractAddress,
+  );
   const chainId = chainsId[0]?.chainId;
-  const { historical, isError, isLoading } = useHistorical(contractAddress, chainId, currentCoin);
-
-  const handleChange = (e) => {
-    setContractAddress(e.target.value);
-  };
+  const { historical, isError, isLoading } = useHistorical(
+    contractAddress,
+    chainId,
+    currentCoin,
+  );
 
   return (
     <div className={classNames('App', {
@@ -26,28 +31,15 @@ const App = () => {
       'bg-dark': theme === 'dark',
     })}>
       <Navbar/>
-      <section id='graphic' className='container mt-3'>
-        <select
-          name='cryptos'
-          className={classNames('form-select mb-3', {
-            'bg-light': theme === 'light',
-            'bg-dark text-white': theme === 'dark',
-          })}
-          id='floating-select'
-          onChange={handleChange}
-        >
-          <option>Choose a Crypto Chain</option>
-          {
-            chains.map((item) => (
-              <option
-                key={item.chainId}
-                value={item.contractAddress}
-              >
-                {item.name}
-              </option>
-            ))}
-        </select>
-        <Graph isLoading={isLoading} isError={isError} historical={historical}/>
+      <section id='conversor' className='container mt-3 border rounded shadow'>
+            <Convertion quoteCurrency={currentCoin} contractAddress={contractAddress} />
+      </section>
+      <section id='graphic' className='container mt-3 border rounded shadow py-3'>
+        <Graph
+          isLoading={isLoading}
+          isError={isError}
+          historical={historical}
+        />
       </section>
       <AboutUs />
     </div>

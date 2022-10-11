@@ -14,14 +14,18 @@ const BlankSlate = () => {
       <img
         src={cryptos}
         alt='Cryptos image'
-        className='w-25'
+        className={classNames('w-25', {
+          '': theme === 'light',
+          // eslint-disable-next-line quote-props
+          'revertColor': theme === 'dark',
+        })}
       />
       <h2
       className={classNames('text-center my-0', {
         'text-black': theme === 'light',
         'text-white': theme === 'dark',
       })}
-      >Please, to continue choose a currency...</h2>
+      >Por favor, elije una criptomoneda para continuar...</h2>
     </div>
   );
 };
