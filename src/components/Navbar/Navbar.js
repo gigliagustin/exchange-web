@@ -44,8 +44,9 @@ const Navbar = () => {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                data-testid="a-element"
               >
-                <img src={urlFlag} alt='' />
+              <img src={urlFlag} alt='' />
                 {currentCoin}
               </a>
               <ul className="dropdown-menu">
