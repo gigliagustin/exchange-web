@@ -38,7 +38,7 @@ const Convertion = ({ quoteCurrency, contractAddress }) => {
     }
     return (
       <div className='container d-flex justify-content-center py-5 my-5'>
-        <Spinner />
+        <Spinner theme={theme}/>
       </div>
     );
   }
