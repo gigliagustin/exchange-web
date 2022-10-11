@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getBalances } from '../services/getBalances';
 import { filterBalances } from '../helpers/filterBalances';
 
+/* istanbul ignore next */
 const useBalances = (quoteCurrency, contractAddress) => {
   const [balances, setBalances] = useState();
   const [quote, setQuote] = useState();

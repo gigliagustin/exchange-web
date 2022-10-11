@@ -12,6 +12,7 @@ import { useThemeContext } from '../../providers/ThemeProvider';
 import BlankSlate from '../BlankSlate/BlankSlate';
 import { Spinner } from '../Spinner';
 
+/* istanbul ignore next */
 const Graph = ({ isLoading, isError, historical }) => {
   const quoteCurrency = useQuoteCurrencyContext();
   const theme = useThemeContext();
