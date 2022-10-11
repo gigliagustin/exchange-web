@@ -8,11 +8,12 @@ import { Graph } from './components/Graph';
 import { Navbar } from './components/Navbar';
 import { chains } from './constants';
 import { useChainCurrencyContext } from './providers/ChainProvider';
-import { useThemeContext } from './providers/ThemeProvider';
+import { useThemeContext, useThemeToggleContext } from './providers/ThemeProvider';
 import { Footer } from './components/Footer';
 
 const App = () => {
   const theme = useThemeContext();
+  const setTheme = useThemeToggleContext();
   const currentCoin = useQuoteCurrencyContext();
   const chainValue = useChainCurrencyContext();
   const { contractAddress } = chainValue.contractAddress;
@@ -31,7 +32,7 @@ const App = () => {
       'bg-light': theme === 'light',
       'bg-dark': theme === 'dark',
     })}>
-      <Navbar/>
+      <Navbar theme = {theme} setTheme = {setTheme}/>
       <section id='conversor' className='container mt-3 border rounded shadow py-3'>
         <Convertion quoteCurrency={currentCoin} contractAddress={contractAddress} />
       </section>

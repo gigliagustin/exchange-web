@@ -13,10 +13,8 @@ import { useThemeContext, useThemeToggleContext } from '../../providers/ThemePro
 import './navbar.scss';
 import logo from '../../assets/logo.png';
 
-const Navbar = () => {
+const Navbar = ({ theme, setTheme }) => {
   const [currentCountry, setCurrentCountry] = useState('US');
-  const setTheme = useThemeToggleContext();
-  const theme = useThemeContext();
   const urlFlag = `https://www.countryflagicons.com/SHINY/16/${currentCountry}.png`;
 
   const currentCoin = useQuoteCurrencyContext();
@@ -89,6 +87,7 @@ const Navbar = () => {
                 role='button'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
+                data-testid = 'cripto-drop'
               >
                 {chainValue?.name}
               </a>
