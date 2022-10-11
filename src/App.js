@@ -11,6 +11,7 @@ import { useChainCurrencyContext } from './providers/ChainProvider';
 import { useThemeContext, useThemeToggleContext } from './providers/ThemeProvider';
 import { Footer } from './components/Footer';
 
+/* istanbul ignore next */
 const App = () => {
   const theme = useThemeContext();
   const setTheme = useThemeToggleContext();

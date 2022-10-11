@@ -8,9 +8,12 @@ import { QuoteCurrencyProvider } from './providers/CurrencyProvider';
 import { ChainCurrencyProvider } from './providers/ChainProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
 
+/* istanbul ignore next */
 const queryClient = new QueryClient();
 
+/* istanbul ignore next */
 const root = ReactDOM.createRoot(document.getElementById('root'));
+/* istanbul ignore next */
 root.render(
   <React.StrictMode>
     <ThemeProvider>
@@ -25,4 +28,5 @@ root.render(
   </React.StrictMode>,
 );
 
+/* istanbul ignore next */
 reportWebVitals();
