@@ -26,7 +26,6 @@ const Navbar = () => {
       setTheme('light');
     }
   };
-  console.log(theme);
 
   return (
     <nav className={classNames('navbar navbar-expand-lg bg-light', {
@@ -67,10 +66,16 @@ const Navbar = () => {
                 <img src={urlFlag} alt='' />
                 {currentCoin}
               </a>
-              <ul className="dropdown-menu">
+              <ul className={classNames('dropdown-menu', {
+                'bg-light': theme === 'light',
+                'bg-dark': theme === 'dark',
+              })}>
                 <div className='gridTitle'> Seleccione una moneda</div>
                 {currencies.map((currency) => <li key={currency.code}>
-                  <a className="dropdown-item" href="#" onClick={handleClick} id={currency.country}>{currency.code}</a>
+                  <a className={classNames('dropdown-item', {
+                    'text-black': theme === 'light',
+                    'text-white': theme === 'dark',
+                  })} href="#" onClick={handleClick} id={currency.country}>{currency.code}</a>
                 </li>)}
               </ul>
             </li>
