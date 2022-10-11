@@ -1,11 +1,17 @@
 import { React, useState } from 'react';
-import { currencies } from '../../constants';
-import { useQuoteCurrencyContext, useQuoteCurrencyToggleContext } from '../../providers/CurrencyProvider';
+import { chains, currencies } from '../../constants';
+import {
+  useChainCurrencyContext,
+  useChainCurrencyToggleContext,
+} from '../../providers/ChainProvider';
+import {
+  useQuoteCurrencyContext,
+  useQuoteCurrencyToggleContext,
+} from '../../providers/CurrencyProvider';
 import './navbar.scss';
 
 const Navbar = () => {
   const [currentCountry, setCurrentCountry] = useState('US');
-
   const urlFlag = `https://www.countryflagicons.com/SHINY/16/${currentCountry}.png`;
 
   const currentCoin = useQuoteCurrencyContext();
@@ -15,65 +21,113 @@ const Navbar = () => {
     setCurrentCountry(e.target.id);
   };
 
+  const chainValue = useChainCurrencyContext();
+  const setChainValue = useChainCurrencyToggleContext();
+  const handleChainClick = (e) => {
+    const duplicatedChain = chains;
+    const filteredChain = duplicatedChain.find(
+      (chain) => chain.contractAddress === e.target.id,
+    );
+    setChainValue({
+      name: filteredChain.name,
+      chainId: filteredChain.chainId,
+      contractAddress: filteredChain,
+    });
+  };
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
-      <div className="container-fluid d-flex .justify-content-sm-between">
-        <a className="navbar-brand" href="#">
-          <img src='' width="30" height="24" />
+    <nav className='navbar navbar-expand-lg bg-light'>
+      <div className='container-fluid d-flex .justify-content-sm-between'>
+        <a className='navbar-brand' href='#'>
+          <img src='' width='30' height='24' />
         </a>
         <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          className='navbar-toggler'
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#navbarNavDropdown'
+          aria-controls='navbarNavDropdown'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className='navbar-toggler-icon'></span>
         </button>
         <div
-          className="collapse navbar-collapse flex-grow-0"
-          id="navbarNavDropdown"
+          className='collapse navbar-collapse flex-grow-0'
+          id='navbarNavDropdown'
         >
-          <ul className="navbar-nav">
-            <li className="nav-item dropdown">
+          <ul className='navbar-nav'>
+            <li className='nav-item dropdown'>
               <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                className='nav-link dropdown-toggle'
+                href='#'
+                role='button'
+                data-bs-toggle='dropdown'
+                aria-expanded='false'
+              >
+                {chainValue?.name}
+              </a>
+              <ul className='dropdown-menu'>
+                <div className='gridTitle'> Seleccione una criptomoneda</div>
+                {chains.map((chain) => (
+                  <li key={chain.chainId}>
+                    <a
+                      className='dropdown-item'
+                      href='#'
+                      onClick={handleChainClick}
+                      id={chain.contractAddress}
+                    >
+                      {chain.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+            <li className='nav-item dropdown'>
+              <a
+                className='nav-link dropdown-toggle'
+                href='#'
+                role='button'
+                data-bs-toggle='dropdown'
+                aria-expanded='false'
               >
                 <img src={urlFlag} alt='' />
                 {currentCoin}
               </a>
-              <ul className="dropdown-menu">
-              <div className='gridTitle'> Seleccione una moneda</div>
-                {currencies.map((currency) => <li key={currency.code}>
-                <a className="dropdown-item" href="#" onClick={handleClick} id={currency.country}>{currency.code}</a>
-              </li>)}
+              <ul className='dropdown-menu'>
+                <div className='gridTitle'> Seleccione una moneda</div>
+                {currencies.map((currency) => (
+                  <li key={currency.code}>
+                    <a
+                      className='dropdown-item'
+                      href='#'
+                      onClick={handleClick}
+                      id={currency.country}
+                    >
+                      {currency.code}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" id="conversor" href="#">
+            <li className='nav-item'>
+              <a className='nav-link' id='conversor' href='#'>
                 Calculadora
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" id="graph" href="#">
+            <li className='nav-item'>
+              <a className='nav-link' id='graph' href='#'>
                 Gráficos
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" id="about-us" href="#">
+            <li className='nav-item'>
+              <a className='nav-link' id='about-us' href='#'>
                 ¿Quienes somos?
               </a>
             </li>
           </ul>
         </div>
-      </div >
-    </nav >
+      </div>
+    </nav>
   );
 };
 

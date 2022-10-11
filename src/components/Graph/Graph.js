@@ -17,7 +17,7 @@ const Graph = ({ isLoading, isError, historical }) => {
   if (isLoading || isError) {
     return (
       <div className='container d-flex justify-content-center mt-5'>
-        <Spinner />;
+        <Spinner />
       </div>
     );
   }

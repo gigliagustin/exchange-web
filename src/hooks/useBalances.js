@@ -7,10 +7,10 @@ const useBalances = (quoteCurrency, contractAddress) => {
   const [balances, setBalances] = useState();
   const [quote, setQuote] = useState();
   const { isLoading, isError } = useQuery(
-    ['balances', contractAddress],
+    ['balances', quoteCurrency, contractAddress],
     () => getBalances(quoteCurrency),
     {
-      enabled: !!contractAddress,
+      enabled: !!contractAddress && !!quoteCurrency,
       refetchOnWindowFocus: false,
       select(response) {
         return filterBalances(contractAddress, response);
