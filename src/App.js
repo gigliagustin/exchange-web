@@ -9,6 +9,7 @@ import { Navbar } from './components/Navbar';
 import { chains } from './constants';
 import { useChainCurrencyContext } from './providers/ChainProvider';
 import { useThemeContext } from './providers/ThemeProvider';
+import { Footer } from './components/Footer';
 
 const App = () => {
   const theme = useThemeContext();
@@ -42,6 +43,7 @@ const App = () => {
         />
       </section>
       <AboutUs />
+      <Footer/>
     </div>
   );
 };
