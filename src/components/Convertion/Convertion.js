@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import useBalances from '../../hooks/useBalances';
