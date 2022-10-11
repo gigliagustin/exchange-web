@@ -97,15 +97,16 @@ export const currencies = [
 export const TeamMembers = [
   {
     id: 1,
-    name: 'Agustín Gigli',
-    role: 'Team Leader',
-    image: imageAgus,
-  },
-  {
-    id: 2,
+
     name: 'Maciel Castro',
     role: 'Scrum Master',
     image: imageMaciel,
+  },
+  {
+    id: 2,
+    name: 'Agustín Gigli',
+    role: 'Team Leader',
+    image: imageAgus,
   },
   {
     id: 3,
