@@ -9,7 +9,6 @@ import {
   useQuoteCurrencyContext,
   useQuoteCurrencyToggleContext,
 } from '../../providers/CurrencyProvider';
-import { useThemeContext, useThemeToggleContext } from '../../providers/ThemeProvider';
 import './navbar.scss';
 import logo from '../../assets/logo.png';
 
