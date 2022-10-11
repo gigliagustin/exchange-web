@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import useBalances from '../../hooks/useBalances';
 import BlankSlate from '../BlankSlate/BlankSlate';
 import Spinner from '../Spinner/Spinner';
-import ConvertionInput from '../ConvertionInput/ConvertionInput';
+import { ConvertionInput } from '../ConvertionInput';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const Convertion = ({ quoteCurrency, contractAddress }) => {
