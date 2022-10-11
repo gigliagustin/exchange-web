@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 class GraphItems {
   constructor(date, price) {
     this.date = date;
@@ -5,6 +6,7 @@ class GraphItems {
   }
 }
 
+/* istanbul ignore next */
 export const filterItems = (response) => {
   const items = response.data.data[0].items.map(item => {
     const { date, price } = item;

@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 export const filterBalances = (contractAddress, balances) => {
   const balance = balances?.data.data;
   const arrBal = balance?.items;

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import BlankSlate from './BlankSlate';
 
-const text = 'Please, to continue choose a currency...';
+const text = 'Por favor, elije una criptomoneda para continuar...';
 
 describe('Blank Slate test', () => {
   test('Esperamos que renderice el componente el BlankSlate', () => {

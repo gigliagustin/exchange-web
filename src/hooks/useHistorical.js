@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { filterItems } from '../helpers/filterItems';
 import { getHistorical } from '../services/getHistorical';
 
+/* istanbul ignore next */
 const useHistorical = (
   contractAdress,
   chainId,

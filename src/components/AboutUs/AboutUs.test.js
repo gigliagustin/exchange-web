@@ -5,7 +5,7 @@ describe('Test About-Us', () => {
   test('We expected the component to be rendered', () => {
     render(<AboutUs />);
 
-    const element = screen.getByText('Agustin Gigli');
+    const element = screen.getByText('Agustín Gigli');
 
     expect(element).toBeInTheDocument();
   });
