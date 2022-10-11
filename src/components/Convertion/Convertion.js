@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import useBalances from '../../hooks/useBalances';
 import BlankSlate from '../BlankSlate/BlankSlate';
 import Spinner from '../Spinner/Spinner';
-import { Card } from '../Card';
+import ConvertionInput from '../ConvertionInput/ConvertionInput';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 const Convertion = ({ quoteCurrency, contractAddress }) => {
+  const theme = useThemeContext();
   const {
     balances, quote, isLoading, isError,
   } = useBalances(
@@ -46,10 +49,16 @@ const Convertion = ({ quoteCurrency, contractAddress }) => {
   }
 
   return (
-    <div className='row'>
-        <div className='col input-group'>
+    <div className='row py-3'>
+          <div className={classNames('col', {
+            'text-dark': theme === 'light',
+            'text-white': theme === 'dark',
+          })}>
+          <p>Ingresa la cantidad de criptos que deseas convertir</p>
+
+        <div className='input-group'>
           <label htmlFor='moneyValue' className='input-group-text'>
-            Select a value
+            Ingresa un valor
           </label>
           <input
             type='number'
@@ -59,9 +68,16 @@ const Convertion = ({ quoteCurrency, contractAddress }) => {
             defaultValue={1}
             className='form-control'
           />
+          </div>
         </div>
-        <div className='col'>
-          <Card balances={balances} convertion={convertion} />
+        <div className={classNames('col', {
+          'text-dark': theme === 'light',
+          'text-white': theme === 'dark',
+        })}>
+          <ConvertionInput
+          balances={balances}
+          convertion={convertion}
+          quoteCurrency={quoteCurrency} />
         </div>
     </div>
   );

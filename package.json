@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
     "classnames": "^2.3.2",
+    "currency.js": "^2.0.4",
     "eslint-config-airbnb": "^19.0.4",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
@@ -16,6 +17,7 @@
     "react-query": "^3.39.2",
     "react-scripts": "5.0.1",
     "recharts": "^2.1.14",
+    "resources": "^0.4.3",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

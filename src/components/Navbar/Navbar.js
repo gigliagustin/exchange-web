@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { React, useState } from 'react';
 import { chains, currencies } from '../../constants';
 import {
@@ -8,10 +9,13 @@ import {
   useQuoteCurrencyContext,
   useQuoteCurrencyToggleContext,
 } from '../../providers/CurrencyProvider';
+import { useThemeContext, useThemeToggleContext } from '../../providers/ThemeProvider';
 import './navbar.scss';
 
 const Navbar = () => {
   const [currentCountry, setCurrentCountry] = useState('US');
+  const setTheme = useThemeToggleContext();
+  const theme = useThemeContext();
   const urlFlag = `https://www.countryflagicons.com/SHINY/16/${currentCountry}.png`;
 
   const currentCoin = useQuoteCurrencyContext();
@@ -19,6 +23,14 @@ const Navbar = () => {
   const handleClick = (e) => {
     setCurrentCoin(e.target.text);
     setCurrentCountry(e.target.id);
+  };
+
+  const handleChange = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
   };
 
   const chainValue = useChainCurrencyContext();
@@ -35,10 +47,13 @@ const Navbar = () => {
     });
   };
   return (
-    <nav className='navbar navbar-expand-lg bg-light'>
-      <div className='container-fluid d-flex .justify-content-sm-between'>
-        <a className='navbar-brand' href='#'>
-          <img src='' width='30' height='24' />
+    <nav className={classNames('navbar navbar-expand-lg bg-light', {
+      'bg-light': theme === 'light',
+      'bg-dark': theme === 'dark',
+    })}>
+      <div className="container-fluid d-flex .justify-content-sm-between">
+        <a className="navbar-brand" href="#">
+          <img src='' width="30" height="24" />
         </a>
         <button
           className='navbar-toggler'
@@ -49,7 +64,7 @@ const Navbar = () => {
           aria-expanded='false'
           aria-label='Toggle navigation'
         >
-          <span className='navbar-toggler-icon'></span>
+          <span className='navbar-toggler-icon text-white'></span>
         </button>
         <div
           className='collapse navbar-collapse flex-grow-0'
@@ -58,7 +73,10 @@ const Navbar = () => {
           <ul className='navbar-nav'>
             <li className='nav-item dropdown'>
               <a
-                className='nav-link dropdown-toggle'
+                className={classNames('nav-link dropdown-toggle', {
+                  'text-black': theme === 'light',
+                  'text-white': theme === 'dark',
+                })}
                 href='#'
                 role='button'
                 data-bs-toggle='dropdown'
@@ -66,12 +84,18 @@ const Navbar = () => {
               >
                 {chainValue?.name}
               </a>
-              <ul className='dropdown-menu'>
-                <div className='gridTitle'> Seleccione una criptomoneda</div>
+              <ul className={classNames('dropdown-menu', {
+                'bg-light': theme === 'light',
+                'bg-dark': theme === 'dark',
+              })}>
+                <div className='gridTitle'> Seleccione una moneda</div>
                 {chains.map((chain) => (
                   <li key={chain.chainId}>
                     <a
-                      className='dropdown-item'
+                      className={classNames('dropdown-item', {
+                        'text-black': theme === 'light',
+                        'text-white': theme === 'dark',
+                      })}
                       href='#'
                       onClick={handleChainClick}
                       id={chain.contractAddress}
@@ -84,45 +108,64 @@ const Navbar = () => {
             </li>
             <li className='nav-item dropdown'>
               <a
-                className='nav-link dropdown-toggle'
-                href='#'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
+                className={classNames('nav-link dropdown-toggle', {
+                  'text-black': theme === 'light',
+                  'text-white': theme === 'dark',
+                })}
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                data-testid="a-element"
               >
-                <img src={urlFlag} alt='' />
+              <img src={urlFlag} alt='' />
                 {currentCoin}
               </a>
-              <ul className='dropdown-menu'>
+              <ul className={classNames('dropdown-menu', {
+                'bg-light': theme === 'light',
+                'bg-dark': theme === 'dark',
+              })}>
                 <div className='gridTitle'> Seleccione una moneda</div>
-                {currencies.map((currency) => (
-                  <li key={currency.code}>
-                    <a
-                      className='dropdown-item'
-                      href='#'
-                      onClick={handleClick}
-                      id={currency.country}
-                    >
-                      {currency.code}
-                    </a>
-                  </li>
-                ))}
+                {currencies.map((currency) => <li key={currency.code}>
+                  <a className={classNames('dropdown-item', {
+                    'text-black': theme === 'light',
+                    'text-white': theme === 'dark',
+                  })} href="#" onClick={handleClick} id={currency.country}>{currency.code}</a>
+                </li>)}
               </ul>
             </li>
-            <li className='nav-item'>
-              <a className='nav-link' id='conversor' href='#'>
+            <li className="nav-item">
+              <a className={classNames('nav-link', {
+                'text-black': theme === 'light',
+                'text-white': theme === 'dark',
+              })} id="conversor" href="#">
                 Calculadora
               </a>
             </li>
-            <li className='nav-item'>
-              <a className='nav-link' id='graph' href='#'>
+            <li className="nav-item">
+              <a className={classNames('nav-link', {
+                'text-black': theme === 'light',
+                'text-white': theme === 'dark',
+              })} id="graph" href="#">
                 Gráficos
               </a>
             </li>
-            <li className='nav-item'>
-              <a className='nav-link' id='about-us' href='#'>
+            <li className="nav-item">
+              <a className={classNames('nav-link', {
+                'text-black': theme === 'light',
+                'text-white': theme === 'dark',
+              })} id="about-us" href="#">
                 ¿Quienes somos?
               </a>
+            </li>
+            <li className='nav-item form-check form-switch'>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                onChange={handleChange}>
+              </input>
             </li>
           </ul>
         </div>

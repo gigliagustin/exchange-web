@@ -6,19 +6,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QuoteCurrencyProvider } from './providers/CurrencyProvider';
 import { ChainCurrencyProvider } from './providers/ChainProvider';
+import { ThemeProvider } from './providers/ThemeProvider';
 
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <QuoteCurrencyProvider>
-        <ChainCurrencyProvider>
-          <App />
-        </ChainCurrencyProvider>
-      </QuoteCurrencyProvider>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <QuoteCurrencyProvider>
+          <ChainCurrencyProvider>
+            <App />
+          </ChainCurrencyProvider>
+        </QuoteCurrencyProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 );
 
