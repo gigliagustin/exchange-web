@@ -5,7 +5,7 @@ const chainCurrencyToggleContext = createContext();
 
 export const ChainCurrencyProvider = ({ children }) => {
   const [chain, setChain] = useState({
-    name: 'Elije una criptomoneda',
+    name: 'Elige una criptomoneda',
     chainId: null,
     contractAddress: '',
   });

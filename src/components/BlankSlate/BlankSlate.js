@@ -25,7 +25,7 @@ const BlankSlate = () => {
         'text-black': theme === 'light',
         'text-white': theme === 'dark',
       })}
-      >Por favor, elije una criptomoneda para continuar...</h2>
+      >Por favor, elige una criptomoneda para continuar...</h2>
     </div>
   );
 };
