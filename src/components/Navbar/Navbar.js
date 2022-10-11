@@ -11,6 +11,7 @@ import {
 } from '../../providers/CurrencyProvider';
 import { useThemeContext, useThemeToggleContext } from '../../providers/ThemeProvider';
 import './navbar.scss';
+import logo from '../../assets/logo.png';
 
 const Navbar = () => {
   const [currentCountry, setCurrentCountry] = useState('US');
@@ -47,13 +48,20 @@ const Navbar = () => {
     });
   };
   return (
-    <nav className={classNames('navbar navbar-expand-lg bg-light', {
+    <nav className={classNames('navbar navbar-expand-lg sticky-top', {
       'bg-light': theme === 'light',
-      'bg-dark': theme === 'dark',
+      'bg-dark navbar-dark': theme === 'dark',
     })}>
-      <div className="container-fluid d-flex .justify-content-sm-between">
+      <div className="container-fluid d-flex justify-content-sm-between">
         <a className="navbar-brand" href="#">
-          <img src='' width="30" height="24" />
+          <img
+            src={logo}
+            width="30"
+            height="30"
+            alt="Logo"
+            className={classNames('ms-md-3 ms-xl-5', {
+              'revert-logo': theme === 'dark',
+            })}/>
         </a>
         <button
           className='navbar-toggler'
@@ -67,11 +75,11 @@ const Navbar = () => {
           <span className='navbar-toggler-icon text-white'></span>
         </button>
         <div
-          className='collapse navbar-collapse flex-grow-0'
+          className='collapse  navbar-collapse flex-grow-0'
           id='navbarNavDropdown'
         >
-          <ul className='navbar-nav'>
-            <li className='nav-item dropdown'>
+          <ul className='navbar-nav  ms-md-3 align-items-lg-center'>
+            <li className='me-lg-2 nav-item dropdown'>
               <a
                 className={classNames('nav-link dropdown-toggle', {
                   'text-black': theme === 'light',
@@ -106,7 +114,7 @@ const Navbar = () => {
                 ))}
               </ul>
             </li>
-            <li className='nav-item dropdown'>
+            <li className='me-lg-2 nav-item dropdown'>
               <a
                 className={classNames('nav-link dropdown-toggle', {
                   'text-black': theme === 'light',
@@ -134,31 +142,31 @@ const Navbar = () => {
                 </li>)}
               </ul>
             </li>
-            <li className="nav-item">
+            <li className="me-lg-2 nav-item">
               <a className={classNames('nav-link', {
                 'text-black': theme === 'light',
                 'text-white': theme === 'dark',
-              })} id="conversor" href="#">
+              })} href="#conversor">
                 Calculadora
               </a>
             </li>
-            <li className="nav-item">
+            <li className="me-lg-2 nav-item">
               <a className={classNames('nav-link', {
                 'text-black': theme === 'light',
                 'text-white': theme === 'dark',
-              })} id="graph" href="#">
+              })} href="#graphic">
                 Gráficos
               </a>
             </li>
-            <li className="nav-item">
+            <li className="me-lg-2 nav-item">
               <a className={classNames('nav-link', {
                 'text-black': theme === 'light',
                 'text-white': theme === 'dark',
-              })} id="about-us" href="#">
+              })} href="#about-us">
                 ¿Quienes somos?
               </a>
             </li>
-            <li className='nav-item form-check form-switch'>
+            <li className='me-lg-3 me-xl-5 nav-item form-check form-switch'>
               <input
                 className="form-check-input"
                 type="checkbox"

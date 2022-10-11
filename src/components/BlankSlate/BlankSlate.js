@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import cryptos from '../../assets/cryptos.png';
 import { useThemeContext } from '../../providers/ThemeProvider';
+import './blankslate.scss';
 
 const BlankSlate = () => {
   const theme = useThemeContext();
@@ -16,8 +17,7 @@ const BlankSlate = () => {
         alt='Cryptos image'
         className={classNames('w-25', {
           '': theme === 'light',
-          // eslint-disable-next-line quote-props
-          'revertColor': theme === 'dark',
+          'revert-color': theme === 'dark',
         })}
       />
       <h2

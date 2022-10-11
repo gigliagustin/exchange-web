@@ -33,44 +33,42 @@ const Convertion = ({ quoteCurrency, contractAddress }) => {
   if (isLoading || isError) {
     if (balances === undefined) {
       return (
-        <>
-          <BlankSlate />
-          <div className='container d-flex justify-content-center mt-5'>
-            <Spinner />
-          </div>
-        </>
+        <BlankSlate />
       );
     }
     return (
-      <div className='container d-flex justify-content-center mt-5'>
+      <div className='container d-flex justify-content-center py-5 my-5'>
         <Spinner />
       </div>
     );
   }
 
   return (
-    <div className='row py-3'>
-          <div className={classNames('col', {
-            'text-dark': theme === 'light',
-            'text-white': theme === 'dark',
-          })}>
+      <div className='row py-3'>
+        <h3 className={classNames('col-12 pb-2 mb-4 text-center', {
+          'text-dark': theme === 'light',
+          'text-white': theme === 'dark',
+        })}>Conversor de divisas</h3>
+        <div className={classNames('col-12 col-lg-6', {
+          'text-dark': theme === 'light',
+          'text-white': theme === 'dark',
+        })}>
           <p>Ingresa la cantidad de criptos que deseas convertir</p>
-
-        <div className='input-group'>
-          <label htmlFor='moneyValue' className='input-group-text'>
-            Ingresa un valor
-          </label>
-          <input
-            type='number'
-            onBlur={onChangeValue}
-            id='moneyValue'
-            min={0}
-            defaultValue={1}
-            className='form-control'
-          />
+          <div className='input-group'>
+            <label htmlFor='moneyValue' className='input-group-text'>
+              Ingresa un valor
+            </label>
+            <input
+              type='number'
+              onBlur={onChangeValue}
+              id='moneyValue'
+              min={0}
+              defaultValue={1}
+              className='form-control'
+            />
           </div>
         </div>
-        <div className={classNames('col', {
+        <div className={classNames('col-12 col-lg-6 mt-4 m-lg-0', {
           'text-dark': theme === 'light',
           'text-white': theme === 'dark',
         })}>
@@ -79,7 +77,7 @@ const Convertion = ({ quoteCurrency, contractAddress }) => {
           convertion={convertion}
           quoteCurrency={quoteCurrency} />
         </div>
-    </div>
+      </div>
   );
 };
 
