@@ -43,3 +43,8 @@
 .nav-item {
     margin-left: 4rem;
 }
+
+.form-check-input:checked {
+    background-color: $bg-primary-dark;
+    border-color: white;
+}
