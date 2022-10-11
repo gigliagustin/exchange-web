@@ -31,8 +31,8 @@ const App = () => {
       'bg-dark': theme === 'dark',
     })}>
       <Navbar/>
-      <section id='conversor' className='container mt-3 border rounded shadow'>
-            <Convertion quoteCurrency={currentCoin} contractAddress={contractAddress} />
+      <section id='conversor' className='container mt-3 border rounded shadow py-3'>
+        <Convertion quoteCurrency={currentCoin} contractAddress={contractAddress} />
       </section>
       <section id='graphic' className='container mt-3 border rounded shadow py-3'>
         <Graph
